@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Hells Angel Foundation - Orphanage Support Campaign</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles and overrides */
+        :root {
+            --primary-color: #C53030; /* Fire Red */
+            --secondary-color: #1A202C; /* Dark Charcoal/Black */
+            --background-color: #FFFFFF; /* White Background */
+            --text-color: #1A202C; /* Dark text */
+            --card-color: #F7FAFC; /* Light Gray Card */
+            --accent-color: #ECC94B; /* Gold/Yellow Accent */
+            --goal-amount: 50000;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .btn-primary:hover {
+            background-color: #A31D1D;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        .campaign-card {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            background-color: var(--card-color);
+            border: 1px solid #E2E8F0;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: var(--primary-color); /* Red progress bar */
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+        }
+        /* Custom modal styles */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 50;
+        }
+        .crypto-option:hover {
+            border-color: var(--primary-color);
+        }
+        .crypto-option.selected {
+            border-color: var(--primary-color);
+            background-color: #FEEEEE; /* Light Red background for selection */
+        }
+        /* Confetti Effect Simulation */
+        .confetti-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            opacity: 0;
+            background-color: var(--primary-color);
+            animation: fall linear infinite;
+        }
+        .confetti:nth-child(even) { background-color: var(--secondary-color); }
+        .confetti:nth-child(3n) { background-color: var(--accent-color); }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Sticky Header Navigation -->
+    <header class="sticky top-0 bg-white shadow-lg z-30 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo/Campaign Name - Now uses the provided image link -->
+            <a href="#" class="flex items-center text-xl font-extrabold tracking-tight text-gray-800">
+                <!-- LOGO IMAGE: Updated to your smaller image link -->
+                <img id="logo" src="https://i.imgur.com/9WAJSlG.png" alt="Hells Angel Logo" class="w-10 h-10 rounded-full mr-3 object-contain" style="border: 2px solid var(--primary-color);">
+                Hells Angel <span class="font-light ml-1 text-gray-500">Foundation</span>
+            </a>
+            <!-- Donate Button -->
+            <button id="mainDonateBtn" class="px-6 py-2 rounded-full font-semibold btn-primary shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                Donate Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+
+            <!-- Campaign Details (Left Column - Full width on mobile) -->
+            <div class="lg:w-2/3 space-y-8">
+                <!-- Hero Image/Video Placeholder -->
+                <div class="rounded-xl overflow-hidden shadow-2xl">
+                    <!-- MAIN HERO IMAGE: Updated to your large campaign image link -->
+                    <img src="https://i.imgur.com/17mhFbn.jpeg"
+                         alt="Campaign Image Placeholder for Orphanage Home Support"
+                         class="w-full h-auto object-cover"
+                         onerror="this.onerror=null;this.src='https://placehold.co/1200x675/1A202C/FFFFFF?text=Riding+for+Hope'">
+                </div>
+
+                <!-- Campaign Story -->
+                <section class="campaign-card p-6 sm:p-8 rounded-xl">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-800 flex items-center">
+                        Riding for Hope: Rebuilding Orphanage Home 14 🔥
+                    </h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        This **emergency campaign** focuses on the structural rebuild of St. Jude's Orphanage Home 14. Following severe weather damage, the home is no longer safe for the 45 children residing there. The Hells Angel Foundation is launching this emergency campaign to raise **$50,000 in cryptocurrency** to fully fund the rebuild, ensuring a safe, warm, and stable environment for the children by the new year.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed border-l-4 border-primary-color pl-4 py-2" style="border-color:var(--primary-color);">
+                        Every Bitcoin (BTC) or Tether (USDT\_ERC20) donation is a gift of shelter. It goes directly to purchasing necessary building materials and contracting local, trusted builders. We are committed to **100% transparency** and turning your crypto into concrete hope.
+                    </p>
+
+                    <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-800 flex items-center">
+                        Our Impact Goal: A Safe Sanctuary <span class="ml-2 text-xl" style="color:var(--accent-color);">⭐</span>
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>New roofing and structural repairs (**40%** of goal)</li>
+                        <li>Updated electrical and plumbing systems (**30%** of goal)</li>
+                        <li>New bedding and school supplies (**20%** of goal)</li>
+                        <li>Emergency operational reserve (**10%** of goal)</li>
+                    </ul>
+
+                </section>
+            </div>
+
+            <!-- Donation Summary (Right Column - Sticky on desktop) -->
+            <div class="lg:w-1/3">
+                <div class="campaign-card p-6 sm:p-8 rounded-xl sticky top-24">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Campaign Progress</h3>
+
+                    <!-- Progress Bar -->
+                    <div class="mb-4 bg-gray-200 rounded-full h-3">
+                        <div id="progressBar" class="progress-bar w-[0%]" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+                    <p class="text-4xl font-extrabold text-gray-800 mb-1">
+                        $<span id="totalRaisedDisplay">0</span> <span class="text-lg font-normal text-gray-500">USD Raised</span>
+                    </p>
+                    <p class="text-sm font-semibold text-gray-600 mb-6">
+                        Goal: $<span id="campaignGoal">50,000</span>
+                    </p>
+
+                    <!-- Primary CTA -->
+                    <button id="sidebarDonateBtn" class="w-full py-3 rounded-lg font-bold btn-primary text-lg shadow-xl uppercase tracking-wider mb-6 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50">
+                        Pledge Your Crypto Gift
+                    </button>
+
+                    <!-- Donor Counter -->
+                    <div class="flex items-center justify-between text-gray-500 text-sm font-medium">
+                        <p><span id="donorCount">0</span> Donors</p>
+                        <p>15 Days Left</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Transparency Section -->
+        <section class="mt-12 p-6 sm:p-8 rounded-xl bg-gray-50 border border-gray-200">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" style="color:var(--primary-color);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944c-1.393 0-2.731.35-3.931 1.011l-3.328 1.95a1.2 1.2 0 00-.594 1.026v10.138a1.2 1.2 0 00.594 1.026l3.328 1.95a11.955 11.955 0 007.862 0l3.328-1.95a1.2 1.2 0 00.594-1.026V7.126a1.2 1.2 0 00-.594-1.026l-3.328-1.95z" />
+                </svg>
+                Financial Accountability & Trust
+            </h2>
+            <p class="text-gray-500">
+                All cryptocurrency is held in a secure, multi-signature vault and converted to fiat currency only at the time of required construction payments. Transaction hashes for large transfers are published on our <a href="#" class="text-red-600 underline">Transparency Log</a> monthly.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Donation Modal -->
+    <div id="donationModal" class="fixed inset-0 hidden modal-overlay items-center justify-center p-4">
+        <div id="modalContent" class="bg-white w-full max-w-lg mx-auto rounded-xl shadow-2xl p-6 sm:p-8 transform transition-all duration-300">
+
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center pb-4 border-b border-gray-200 mb-6">
+                <h2 class="text-2xl font-bold text-gray-800" id="modalTitle">Make Your Crypto Donation</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-800 transition duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Step 1: Amount and Contact Info -->
+            <div id="step1" class="space-y-6">
+                <h3 class="text-xl font-semibold text-gray-600">Step 1: Pledge Details</h3>
+
+                <!-- Amount Selection -->
+                <div>
+                    <label for="donationAmount" class="block text-sm font-medium text-gray-500 mb-2">Donation Amount (USD Equivalent)</label>
+                    <div class="flex space-x-3">
+                        <input type="number" id="donationAmount" value="50" min="5" placeholder="Other amount" class="w-2/3 p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-800 focus:ring-red-500 focus:border-red-500" oninput="validateAmount(this)">
+                        <button onclick="setAmount(25)" class="w-1/3 p-3 rounded-lg bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-800 font-medium">$25</button>
+                        <button onclick="setAmount(100)" class="w-1/3 p-3 rounded-lg bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-800 font-medium">$100</button>
+                    </div>
+                </div>
+
+                <!-- Donor Name/Email (For receipt/thank you) -->
+                <div class="space-y-4">
+                    <input type="text" id="donorName" placeholder="Your Name (Optional)" class="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-800 focus:ring-red-500 focus:border-red-500">
+                    <input type="email" id="donorEmail" placeholder="Email for Receipt (Required)" class="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-800 focus:ring-red-500 focus:border-red-500">
+                </div>
+
+                <div id="step1Error" class="text-sm text-red-600 hidden">Please enter a valid email and an amount of at least $5.</div>
+
+                <button onclick="goToStep2()" class="w-full py-3 rounded-lg font-bold btn-primary text-lg uppercase tracking-wider">
+                    Continue to Select Crypto
+                </button>
+            </div>
+
+            <!-- Step 2: Crypto Selection -->
+            <div id="step2" class="space-y-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-600">Step 2: Choose Cryptocurrency</h3>
+                <p class="text-gray-500">Pledge Amount: <span id="pledgeSummary" class="font-bold text-gray-800">$50 USD</span></p>
+
+                <!-- Crypto Option: BTC -->
+                <button onclick="selectCrypto('BTC', this)" class="crypto-option w-full flex items-center justify-between p-4 rounded-xl bg-gray-100 border-2 border-transparent transition duration-200 focus:outline-none focus:border-red-500">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://placehold.co/40x40/FF9900/ffffff?text=BTC" class="rounded-full" alt="Bitcoin logo">
+                        <span class="text-gray-800 font-semibold text-lg">Bitcoin (BTC)</span>
+                    </div>
+                    <span class="text-sm text-gray-500">Fast, Global</span>
+                </button>
+
+                <!-- Crypto Option: USDT_ERC20 -->
+                <button onclick="selectCrypto('USDT_ERC20', this)" class="crypto-option w-full flex items-center justify-between p-4 rounded-xl bg-gray-100 border-2 border-transparent transition duration-200 focus:outline-none focus:border-red-500">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://placehold.co/40x40/50AF95/ffffff?text=USDT" class="rounded-full" alt="USDT logo">
+                        <span class="text-gray-800 font-semibold text-lg">Tether (USDT) - ERC20</span>
+                    </div>
+                    <span class="text-sm text-red-600">Ethereum Network Only</span>
+                </button>
+
+                <button onclick="goToStep1()" class="w-full py-3 rounded-lg font-medium bg-gray-200 hover:bg-gray-300 text-gray-600 mt-4">
+                    &larr; Back to Amount
+                </button>
+            </div>
+
+            <!-- Step 3: Wallet Details -->
+            <div id="step3" class="space-y-6 hidden text-center">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Step 3: Complete Transfer</h3>
+                <p class="text-gray-500">
+                    Please send your <span id="cryptoTypeDisplay" class="font-bold text-red-600"></span> donation of approximately **<span id="cryptoAmountDisplay" class="font-bold text-green-700"></span>**
+                    (equivalent to <span id="fiatAmountDisplay">$50.00 USD</span>).
+                </p>
+
+                <!-- QR Code Placeholder -->
+                <div class="flex justify-center my-6">
+                    <img id="qrCodePlaceholder" src="https://placehold.co/200x200/C53030/FFFFFF?text=QR+Code" alt="QR Code" class="rounded-lg border-4 border-gray-200 shadow-xl">
+                </div>
+
+                <!-- Wallet Address Display -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-2" id="walletLabel">Wallet Address (<span id="networkLabel"></span>)</label>
+                    <div class="relative">
+                        <input type="text" id="walletAddress" value="bc1q4c6f7xzsekkpvd2guwkaww4m7se9yjlrxnrjc7" readonly class="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-800 text-sm break-all">
+                        <button onclick="copyAddress()" class="absolute right-0 top-0 h-full px-4 rounded-r-lg bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+
+                <p id="copyMessage" class="text-sm text-green-600 hidden">Address copied to clipboard!</p>
+                <div id="warningMessage" class="text-sm bg-yellow-50 text-yellow-800 border border-yellow-300 p-3 rounded-lg mt-4">
+                    <span class="font-bold" id="warningTitle">IMPORTANT:</span> <span id="warningText"></span>
+                </div>
+
+                <!-- NEW: Send Confirmation Button -->
+                <button onclick="goToStep4()" class="w-full py-3 rounded-lg font-bold btn-primary text-lg uppercase tracking-wider mt-6">
+                    I Have Sent the Donation
+                </button>
+
+                <button onclick="goToStep2()" class="w-full py-3 rounded-lg font-medium bg-gray-200 hover:bg-gray-300 text-gray-600 mt-4">
+                    &larr; Change Crypto
+                </button>
+            </div>
+
+            <!-- Step 4: Loading/Confirmation Countdown -->
+            <div id="step4" class="space-y-6 hidden text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center justify-center">
+                    Processing Your Generous Gift <span class="ml-2 animate-spin text-3xl">🔄</span>
+                </h3>
+                <p class="text-gray-600">
+                    We're checking the blockchain for your transaction. This process takes a moment.
+                </p>
+
+                <div class="py-10">
+                    <div class="text-6xl font-extrabold text-red-600" id="countdownTimer">20</div>
+                    <p class="text-gray-500">seconds until confirmation...</p>
+                </div>
+
+                <p class="text-sm text-gray-500">
+                    *Note: Transaction confirmation times vary based on network congestion. If the timer finishes, your transaction has likely been recorded!
+                </p>
+
+                <button onclick="goToStep3()" class="w-full py-3 rounded-lg font-medium bg-gray-200 hover:bg-gray-300 text-gray-600 mt-4">
+                    Cancel & Check Wallet Details
+                </button>
+            </div>
+
+            <!-- Step 5: Thank You Page -->
+            <div id="step5" class="space-y-6 hidden text-center relative overflow-hidden h-96 flex flex-col justify-center items-center">
+                <div class="confetti-effect" id="confettiContainer">
+                    <!-- Confetti will be generated here by JavaScript -->
+                </div>
+                <div class="relative z-10 p-6 bg-white bg-opacity-90 rounded-xl">
+                    <h3 class="text-3xl font-extrabold text-red-600 mb-4 flex items-center justify-center">
+                        <span class="mr-3 text-4xl">🔥</span> Hope Fueled!
+                    </h3>
+                    <p class="text-xl font-semibold text-gray-800 mb-2">
+                        Your donation has been noted!
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Thank you, <span id="thankYouName" class="font-bold text-red-600">Donor</span>, for your incredible gift of **<span id="finalPledgeAmount" class="font-bold text-green-700"></span>**. You have helped secure the future for the children of Orphanage Home 14.
+                    </p>
+                    <button onclick="closeModal()" class="py-3 px-8 rounded-lg font-bold bg-green-600 hover:bg-green-700 text-white text-lg uppercase tracking-wider">
+                        Close
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Standard JavaScript for UI interactions (MUST be outside type="module" for onclick) -->
+    <script>
+        // --- Configuration: Your Wallet Addresses ---
+        const BTC_ADDRESS = "bc1q4c6f7xzsekkpvd2guwkaww4m7se9yjlrxnrjc7";
+        const USDT_ADDRESS = "0x08cfe6ddc3b58b0655dd1c9214bcfddbd3855cca";
+        const CAMPAIGN_GOAL = 50000;
+
+        // Global State (Using static values now, no dynamic updates)
+        let donationState = {
+            amount: 50,
+            currency: null,
+            email: '',
+            name: '',
+            // SIMULATED: Crypto price for conversion
+            exchangeRates: {
+                'BTC': 45000,
+                'USDT_ERC20': 1.005
+            },
+            // Static values for display
+            totalRaised: 13586.00,
+            donorCount: 124,
+        };
+
+        let countdownInterval;
+        // Function now does nothing as requested (no database interaction)
+        let recordDonationCallback = () => console.log("Donation recording removed as requested. Proceeding to thank you screen."); 
+
+        // --- Utility Functions (Global Scope) ---
+
+        function updateProgressBar() {
+            const totalRaised = donationState.totalRaised;
+            const donorCount = donationState.donorCount;
+            const percent = Math.min(100, (totalRaised / CAMPAIGN_GOAL) * 100);
+
+            // Update UI elements with static values
+            const formattedTotal = totalRaised.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('totalRaisedDisplay').textContent = formattedTotal;
+            document.getElementById('campaignGoal').textContent = CAMPAIGN_GOAL.toLocaleString();
+            document.getElementById('donorCount').textContent = donorCount;
+            
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                progressBar.style.width = `${percent}%`;
+                progressBar.setAttribute('aria-valuenow', percent.toFixed(2));
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function clearSelectionClasses() {
+             document.querySelectorAll('.crypto-option').forEach(btn => btn.classList.remove('selected'));
+        }
+
+        // --- Modal/Step Management (Global Scope, called by HTML onclick) ---
+
+        function openModal() {
+            document.getElementById('donationModal').classList.remove('hidden');
+            document.getElementById('donationModal').classList.add('flex');
+            goToStep1();
+        }
+
+        function closeModal() {
+            clearInterval(countdownInterval);
+            document.getElementById('donationModal').classList.remove('flex');
+            document.getElementById('donationModal').classList.add('hidden');
+            // Reset state
+            donationState.currency = null;
+            clearSelectionClasses();
+            document.getElementById('step5').classList.add('hidden');
+            // Clear confetti
+            const confettiContainer = document.getElementById('confettiContainer');
+            if (confettiContainer) confettiContainer.innerHTML = '';
+        }
+
+        function setAmount(amount) {
+            document.getElementById('donationAmount').value = amount;
+            donationState.amount = amount;
+        }
+
+        function validateAmount(input) {
+             let amount = parseFloat(input.value);
+             if (isNaN(amount) || amount < 5) {
+                amount = 5; // Enforce minimum
+             }
+             donationState.amount = parseFloat(amount.toFixed(2));
+             input.value = donationState.amount;
+        }
+
+        function hideAllSteps() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.add('hidden');
+            document.getElementById('step5').classList.add('hidden');
+        }
+
+        function goToStep1() {
+            hideAllSteps();
+            document.getElementById('step1').classList.remove('hidden');
+            document.getElementById('modalTitle').textContent = 'Make Your Crypto Donation';
+        }
+
+        function goToStep2() {
+            const amountInput = document.getElementById('donationAmount');
+            const emailInput = document.getElementById('donorEmail');
+            const nameInput = document.getElementById('donorName');
+            const errorDiv = document.getElementById('step1Error');
+
+            validateAmount(amountInput);
+            donationState.email = emailInput.value.trim();
+            donationState.name = nameInput.value.trim() || 'Generous Donor';
+
+            if (donationState.amount < 5 || !validateEmail(donationState.email)) {
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            errorDiv.classList.add('hidden');
+
+            document.getElementById('pledgeSummary').textContent = `$${donationState.amount.toFixed(2)} USD`;
+            hideAllSteps();
+            document.getElementById('step2').classList.remove('hidden');
+            document.getElementById('modalTitle').textContent = 'Select Currency';
+        }
+
+        function selectCrypto(currency, button) {
+            donationState.currency = currency;
+            clearSelectionClasses();
+            button.classList.add('selected');
+            document.getElementById('copyMessage').classList.add('hidden');
+            // Small delay for visual effect
+            setTimeout(goToStep3, 200);
+        }
+
+        function goToStep3() {
+            if (!donationState.currency) return goToStep2();
+
+            const cryptoDisplay = document.getElementById('cryptoTypeDisplay');
+            const addressInput = document.getElementById('walletAddress');
+            const warningText = document.getElementById('warningText');
+            const warningTitle = document.getElementById('warningTitle');
+            const networkLabel = document.getElementById('networkLabel');
+            const qrCode = document.getElementById('qrCodePlaceholder');
+            const cryptoAmountDisplay = document.getElementById('cryptoAmountDisplay');
+            const fiatAmountDisplay = document.getElementById('fiatAmountDisplay');
+
+            const rate = donationState.exchangeRates[donationState.currency];
+            const cryptoAmount = donationState.amount / rate;
+
+            cryptoAmountDisplay.textContent = cryptoAmount.toFixed(6);
+            fiatAmountDisplay.textContent = `$${donationState.amount.toFixed(2)} USD`;
+
+            if (donationState.currency === 'BTC') {
+                cryptoDisplay.textContent = 'Bitcoin (BTC)';
+                addressInput.value = BTC_ADDRESS;
+                networkLabel.textContent = 'Bitcoin (Bech32)';
+                warningTitle.textContent = 'WARNING:';
+                warningText.innerHTML = 'Only send **Bitcoin (BTC)** to this address (starting with bc1...). Sending any other currency will result in **permanent loss** of funds.';
+                // QR Code generation with the primary color
+                qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:${BTC_ADDRESS}?amount=${cryptoAmount.toFixed(8)}&bgcolor=C53030&color=FFFFFF`;
+                qrCode.alt = "BTC QR Code";
+
+            } else if (donationState.currency === 'USDT_ERC20') {
+                cryptoDisplay.textContent = 'Tether (USDT) - ERC20';
+                addressInput.value = USDT_ADDRESS;
+                networkLabel.textContent = 'Ethereum (ERC20) Network';
+                warningTitle.textContent = 'CRITICAL:';
+                warningText.innerHTML = 'Only send **USDT on the Ethereum (ERC20) network** to this address (starts with 0x...). Sending USDT on other chains (e.g., SOL, TRX) or sending other tokens will result in **permanent loss** of funds.';
+                // QR Code generation with the primary color
+                qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${USDT_ADDRESS}&bgcolor=C53030&color=FFFFFF`;
+                qrCode.alt = "USDT ERC20 QR Code";
+            }
+
+            hideAllSteps();
+            document.getElementById('step3').classList.remove('hidden');
+            document.getElementById('modalTitle').textContent = 'Wallet Details';
+        }
+
+        function goToStep4() {
+            hideAllSteps();
+            document.getElementById('step4').classList.remove('hidden');
+            document.getElementById('modalTitle').textContent = 'Confirmation Pending';
+            startCountdown();
+        }
+
+        function startCountdown() {
+            let seconds = 20;
+            const timerElement = document.getElementById('countdownTimer');
+            timerElement.textContent = seconds;
+
+            clearInterval(countdownInterval);
+
+            countdownInterval = setInterval(() => {
+                seconds--;
+                timerElement.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    goToStep5(); // Final step: Process payment and thank the user
+                }
+            }, 1000);
+        }
+
+        async function goToStep5() {
+            // 1. Process the payment (Call the no-op function as requested)
+            if (recordDonationCallback) {
+                recordDonationCallback(donationState.amount);
+            }
+
+            // 2. Update UI
+            hideAllSteps();
+            document.getElementById('step5').classList.remove('hidden');
+            document.getElementById('step5').classList.add('flex');
+            document.getElementById('modalTitle').textContent = 'Thank You!';
+
+            // Update final details
+            document.getElementById('thankYouName').textContent = donationState.name;
+            document.getElementById('finalPledgeAmount').textContent = `$${donationState.amount.toFixed(2)} USD`;
+
+            // Start confetti
+            triggerConfetti();
+        }
+
+        // --- Confetti Functionality (Global Scope) ---
+        function triggerConfetti() {
+            const container = document.getElementById('confettiContainer');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.animationDelay = `${Math.random() * 2}s`;
+                confetti.style.animationDuration = `${(Math.random() * 3) + 3}s`;
+                confetti.style.transform = `scale(${Math.random() * 0.8 + 0.2})`;
+                container.appendChild(confetti);
+            }
+        }
+
+
+        // --- Copy Functionality (Global Scope) ---
+        function copyAddress() {
+            const addressInput = document.getElementById('walletAddress');
+            try {
+                addressInput.select();
+                document.execCommand('copy');
+
+                document.getElementById('copyMessage').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('copyMessage').classList.add('hidden');
+                }, 2000);
+            } catch (err) {
+                console.error('Could not copy address: ', err);
+            }
+        }
+
+
+        // --- Initialization (Global Scope) ---
+        window.onload = function() {
+            // Set initial UI values based on static state
+            updateProgressBar();
+
+            // Attach event listeners
+            document.getElementById('mainDonateBtn').addEventListener('click', openModal);
+            document.getElementById('sidebarDonateBtn').addEventListener('click', openModal);
+
+            // Close modal when clicking outside (on the overlay)
+            document.getElementById('donationModal').addEventListener('click', function(e) {
+                if (e.target.id === 'donationModal') {
+                    closeModal();
+                }
+            });
+
+            // Initial validation for the amount field
+            validateAmount(document.getElementById('donationAmount'));
+        };
+
+    </script>
+
+    <!-- Firebase Imports and Logic (Module Scope - only for required auth setup) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // --- Firebase Globals and Configuration ---
+        let firebaseConfig = {};
+        if (typeof __firebase_config !== 'undefined' && __firebase_config.length > 0) {
+            try {
+                firebaseConfig = JSON.parse(__firebase_config);
+            } catch (e) {
+                console.error("Error parsing __firebase_config:", e);
+            }
+        }
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        
+        // This function now only handles authentication and does not interact with the database.
+        async function initFirebase() {
+            setLogLevel('debug');
+            try {
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        console.log("Firebase Auth Ready. User ID:", user.uid);
+                    } else {
+                        console.log("No authenticated user.");
+                    }
+                });
+
+            } catch (e) {
+                console.error("Error initializing Firebase:", e);
+            }
+        }
+
+        // Run the Firebase initialization
+        initFirebase();
+    </script>
+</body>
+</html>
+
